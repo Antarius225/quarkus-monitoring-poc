@@ -1,0 +1,28 @@
+package be.abalon.jobs;
+
+import be.abalon.services.ZSmartMonitoringService;
+import io.quarkus.scheduler.Scheduled;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@ApplicationScoped
+public class MonitoringJobs {
+
+    @Inject
+    ZSmartMonitoringService zSmartMonitoringService;
+
+    private static final Logger log = LoggerFactory.getLogger(MonitoringJobs.class);
+
+    @Scheduled(cron = "{monitoring.zsmart.cron.expr}")
+    void zSmartJobs() {
+        log.debug("ZSmart monitoring started");
+        zSmartMonitoringService.monitor();
+    }
+
+    @Scheduled(cron = "{monitoring.telecomApi.cron.expr}")
+    void telecomApiJobs() {
+        log.debug("Telecom API monitoring started");
+    }
+}
