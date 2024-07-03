@@ -11,10 +11,8 @@ class ExampleResourceTest {
     @Test
     void testHelloEndpoint() {
         given()
-                .when().get("/hello")
+                .when().get("/monitoring/")
                 .then()
-                .statusCode(200)
-                .body(is("Hello from Quarkus RESTeasy"));
+                .statusCode(is(200));
     }
-
 }

@@ -17,12 +17,14 @@ public class MonitoringJobs {
 
     @Scheduled(cron = "{monitoring.zsmart.cron.expr}")
     void zSmartJobs() {
-        log.debug("ZSmart monitoring started");
+        log.info("ZSmart monitoring started");
         zSmartMonitoringService.monitor();
     }
 
+    // TODO: Create Cleaning Jobs controllers and define rules to not delete data that is still in use
+
     @Scheduled(cron = "{monitoring.telecomApi.cron.expr}")
     void telecomApiJobs() {
-        log.debug("Telecom API monitoring started");
+        log.info("Telecom API monitoring started");
     }
 }

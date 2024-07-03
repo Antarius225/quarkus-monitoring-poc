@@ -4,6 +4,7 @@ import be.abalon.entities.ApplicationType;
 import be.abalon.entities.Monitoring;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class MonitoringController {
 
     @Path("/")
     @GET
-    public List<Monitoring> getMonitoring() {
-        return Monitoring.listAll();
+    public Response getMonitoring() {
+        return Response.ok(Monitoring.listAll()).build();
     }
 
     @Path("/applications")
